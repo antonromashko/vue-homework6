@@ -6,6 +6,7 @@ import List from "@/views/List.vue";
 import Item from "@/views/Item.vue";
 import About from "@/views/About.vue";
 import Contacts from "@/views/Contacts.vue";
+import Artists from "@/components/task2/Artists.vue";
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,14 @@ const routes = [
     components: {
       default: Contacts,
       Menu: Contacts
+    }
+  },
+  {
+    path: '/artists/:id',
+    name: 'Artists',
+    components: {
+      default: Artists,
+      Menu: Artists
     }
   },
   {
