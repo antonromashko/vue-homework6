@@ -7,6 +7,8 @@ import Item from "@/views/Item.vue";
 import About from "@/views/About.vue";
 import Contacts from "@/views/Contacts.vue";
 import Artists from "@/components/task2/Artists.vue";
+import Albums from "@/components/task2/Albums";
+import Songs from "@/components/task2/Songs";
 
 Vue.use(VueRouter)
 
@@ -15,24 +17,30 @@ const routes = [
     path: '/',
     name: 'Home',
     components: {
-      default: Home,
-      Menu: Home
+      Content: Home
+    },
+    meta: {
+      mainNav: true
     }
   },
   {
     path: '/list',
     name: 'List',
     components: {
-      default: List,
-      Menu: List
+      Content: List
+    },
+    meta: {
+      mainNav: true
     }
   },
   {
     path: '/item/:itemid?',
     name: 'Item',
     components: {
-      default: Item,
-      Menu: Item
+      Content: Item
+    },
+    meta: {
+      mainNav: true
     }
 
   },
@@ -40,24 +48,65 @@ const routes = [
     path: '/contacts',
     name: 'Contacts',
     components: {
-      default: Contacts,
-      Menu: Contacts
+      Content: Contacts
+    },
+    meta: {
+      mainNav: true
+    }
+  },
+  {
+    path: '/artists',
+    name: 'Artists',
+    components: {
+      Content: Artists
+    },
+    meta: {
+      mainNav: true
     }
   },
   {
     path: '/artists/:id',
-    name: 'Artists',
+    name: 'Albums',
     components: {
-      default: Artists,
-      Menu: Artists
-    }
+      Content: Artists,
+      Albums: Albums
+    },
+    props: {
+      Content: false,
+      Albums: true
+    },
+    meta: {
+      mainNav: false
+    },
+    children: [
+            {
+                path: ':name',
+                name: 'Songs',
+                props: {
+                    Content: false,
+                    Albums: true,
+                    Songs: true
+                },
+                components: {
+                    Content: Artists,
+                    Albums: Albums,
+                    Songs: Songs
+                },
+                meta: {
+                    mainNav: false
+                }
+            }
+        ]
+
   },
   {
     path: '/about',
     name: 'About',
     components: {
-      default: About,
-      Menu: About
+      Content: About
+    },
+    meta: {
+      mainNav: true
     }
   },
   {

@@ -18,7 +18,7 @@ export default {
   name: "Menu",
   computed: {
     navRoutes() {
-      return this.$router.options.routes.filter(route => 'name' in route)
+      return this.$router.options.routes.filter(route => 'name' in route && route.meta.mainNav)
     }
   },
   methods: {

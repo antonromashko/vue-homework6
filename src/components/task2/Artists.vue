@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <ul v-if="setArtistsData">
-      <li v-for="artist in setArtistsData" :key="artist.index">
-        <router-link :to="{ name: 'Artists', params: artist.name }">{{ artist.name }}</router-link>
-      </li>
-    </ul>
+  <div class="artists">
+    <div v-if="setArtistsData">
+      <div v-for="artist in setArtistsData" :key="artist.index">
+        <router-link :to="{ name: 'Albums', params: { id: artist.index.toString() } }">{{ artist.name }}</router-link>
+      </div>
+    </div>
     <div v-else>Loading...</div>
   </div>
 
@@ -23,11 +23,19 @@ export default {
   },
   async beforeMount() {
     await this.getArtists();
-    console.log(this.setArtistsData)
   }
 }
 </script>
 
 <style scoped>
-
+.artists {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow: scroll;
+  width: 250px;
+  border: 1px solid grey;
+  height: 100%;
+}
 </style>

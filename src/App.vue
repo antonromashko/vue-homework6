@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <Menu />
-    <router-view name="Menu"/>
+    <div class="main">
+      <router-view name="Content"/>
+      <router-view name="Albums"/>
+    </div>
   </div>
 </template>
 
@@ -35,5 +38,10 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
 }
 </style>
