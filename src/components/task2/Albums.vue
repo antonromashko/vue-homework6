@@ -1,7 +1,15 @@
 <template>
   <div>
       <div v-for="(album, idx) in getAlbums" :key="idx">
-        <router-link :to="{ name: 'Songs', params: { name: album.name }, query: {compositions: JSON.stringify(album.compositions)} }">{{ album.name }}</router-link>
+        <router-link
+            :to="{
+            name: 'Songs',
+            params: { name: album.name },
+            query: {compositions: JSON.stringify(album.compositions), about: album.about}
+        }"
+        >
+          {{ album.name }}
+        </router-link>
       </div>
       <router-view name="Songs"/>
   </div>

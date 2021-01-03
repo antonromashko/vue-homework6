@@ -14,6 +14,7 @@
     <div class="summary">
         {{ duration }}
     </div>
+    <div class="about">{{ about }}</div>
   </div>
 </template>
 
@@ -34,6 +35,10 @@ export default {
   computed: {
     compositions() {
       return JSON.parse(this.$route.query.compositions.toString());
+    },
+    about() {
+      console.log(this.$route.query.about)
+      return this.$route.query.about
     },
     duration() {
       let res = 0
