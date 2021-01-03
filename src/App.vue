@@ -43,5 +43,7 @@ export default {
 .main {
   display: flex;
   flex-direction: row;
+  text-align: center;
+  justify-content: center;
 }
 </style>
