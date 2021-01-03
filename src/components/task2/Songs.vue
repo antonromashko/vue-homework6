@@ -37,7 +37,6 @@ export default {
       return JSON.parse(this.$route.query.compositions.toString());
     },
     about() {
-      console.log(this.$route.query.about)
       return this.$route.query.about
     },
     duration() {
