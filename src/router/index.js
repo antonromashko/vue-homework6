@@ -9,6 +9,7 @@ import Contacts from "@/views/Contacts.vue";
 import Artists from "@/components/task2/Artists.vue";
 import Albums from "@/components/task2/Albums";
 import Songs from "@/components/task2/Songs";
+import Counter from "@/components/Counter";
 
 Vue.use(VueRouter)
 
@@ -104,6 +105,16 @@ const routes = [
     name: 'About',
     components: {
       Content: About
+    },
+    meta: {
+      mainNav: true
+    }
+  },
+  {
+    path: '/counter',
+    name: 'Counter',
+    components: {
+      Content: Counter
     },
     meta: {
       mainNav: true

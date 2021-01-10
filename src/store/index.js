@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import counter from '@/store/counter'
 
 Vue.use(Vuex);
 
@@ -33,6 +34,9 @@ export default new Vuex.Store({
       commit('SET_ARTISTS_DATA', data);
       commit('SET_IS_LOADED', true);
     }
+  },
+  modules: {
+    counter: counter
   }
 })
 
