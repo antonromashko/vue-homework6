@@ -11,18 +11,23 @@
 </template>
 
 <script>
-import { actions, getters } from '@/store';
+// import { actions, getters } from '@/store';
+import {mapState} from "vuex";
 
 export default {
   name: "Artists",
   computed: {
-    ...getters
+    // ...getters
+    ...mapState({
+      setArtistsData: state => state.setArtistsData
+    }),
   },
-  methods: {
-    ...actions
-  },
+  // methods: {
+  //   ...actions
+  // },
   async beforeMount() {
-    await this.getArtists();
+    // await this.getArtists();
+    await this.$store.dispatch('GET_ARTISTS');
   }
 }
 </script>

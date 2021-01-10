@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import {actions, getters} from "@/store";
+// import {actions, getters} from "@/store";
+import { mapState } from 'vuex';
 
 export default {
   name: "Albums",
@@ -27,7 +28,10 @@ export default {
     }
   },
   computed: {
-    ...getters,
+    ...mapState({
+      setArtistsData: state => state.setArtistsData
+    }),
+    // ...getters,
     getAlbums() {
       if (this.setArtistsData.length > 0) {
         return this.setArtistsData.filter(item => item.index.toString() === this.id)[0].album
@@ -35,11 +39,11 @@ export default {
       return []
     }
   },
-  methods: {
-    ...actions
-  },
+  // methods: {
+  //   ...actions
+  // },
   async beforeMount() {
-    await this.getArtists();
+    await this.$store.dispatch('GET_ARTISTS');
   }
 }
 </script>
