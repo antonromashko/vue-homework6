@@ -42,7 +42,6 @@ export default {
     // await this.getArtists();
     await this.$store.dispatch('GET_ARTISTS');
     const viewedData = localStorage.getItem('viewedData');
-    console.log(viewedData)
     this.$store.commit('SET_VIEWED_ARTISTS_DATA', viewedData)
   },
   beforeRouteUpdate (to, from, next) {
