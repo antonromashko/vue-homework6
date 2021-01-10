@@ -2,7 +2,10 @@
   <div class="artists">
     <div v-if="setArtistsData">
       <div v-for="artist in setArtistsData" :key="artist.index">
-        <router-link :to="{ name: 'Albums', params: { id: artist.index.toString() } }">{{ artist.name }}</router-link>
+        <router-link
+            :to="{ name: 'Albums', params: { id: artist.index.toString() } }"
+            :style="adaptViewed(artist.index.toString())"
+        >{{ artist.name }}</router-link>
       </div>
     </div>
     <div v-else>Loading...</div>
@@ -19,16 +22,34 @@ export default {
   computed: {
     // ...getters
     ...mapState({
-      setArtistsData: state => state.setArtistsData
-    }),
+      setArtistsData: state => state.setArtistsData,
+      viewedArtistsData: state => state.viewedArtistsData
+    })
   },
-  // methods: {
-  //   ...actions
-  // },
+  methods: {
+    // ...actions
+    adaptViewed(id) {
+      if (id in this.viewedArtistsData) {
+        return {
+          color: 'darkgreen'
+        }
+      } else {
+        return {}
+      }
+    }
+  },
   async beforeMount() {
     // await this.getArtists();
     await this.$store.dispatch('GET_ARTISTS');
-  }
+    const viewedData = localStorage.getItem('viewedData');
+    console.log(viewedData)
+    this.$store.commit('SET_VIEWED_ARTISTS_DATA', viewedData)
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.$store.commit('PUSH_VIEWED_ARTISTS_DATA', to.params.id);
+    localStorage.setItem('viewedData', JSON.stringify(this.viewedArtistsData));
+    next()
+  },
 }
 </script>
 

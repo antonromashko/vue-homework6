@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLoaded: false,
-    setArtistsData: []
+    setArtistsData: [],
+    viewedArtistsData: []
   },
   mutations: {
     SET_IS_LOADED(state, payload) {
@@ -14,6 +15,14 @@ export default new Vuex.Store({
     },
     SET_ARTISTS_DATA(state, payload) {
       state.setArtistsData = payload
+    },
+    PUSH_VIEWED_ARTISTS_DATA(state, payload) {
+      if(!(payload in state.viewedArtistsData)) {
+        state.viewedArtistsData.push(payload)
+      }
+    },
+    SET_VIEWED_ARTISTS_DATA(state, payload) {
+      state.viewedArtistsData = payload ? [ ...JSON.parse(payload) ] : []
     }
   },
   actions: {
